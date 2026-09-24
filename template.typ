@@ -1,90 +1,213 @@
-// Reusable CV layout/i18n. Content files import this and call `resume(..)`.
+#import "@preview/datify:1.3.0": display-date
 
-#let month-names = (
-  en: ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"),
-  de: ("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"),
+#let webProfile(domain, name, path: "") = [
+  https:\/\/#text(domain, weight: "bold")/#path#text(name, style: "italic")
+]
+
+#let fonts = (
+  serif: "Iowan Old Style",
+  sans: "Avenir Next",
 )
 
-#let ui = (
-  present: (en: "Present", de: "heute"),
+#let colors = (
+  body: black,
+  neutral: rgb("#666666"),
+  accent: rgb("#1f6fb2")
 )
 
-// Builds the helpers that close over `lang`: t (dict -> current-language
-// value), fmt-date/fmt-range (localized dates), job, section, title.
-#let make(lang) = {
-  let accent = rgb("#1f6fb2")
+#let presection-space = 2em
 
-  let t(x) = if type(x) == dictionary {
-    x.at(lang, default: x.at("en", default: none))
-  } else {
-    x
-  }
+#let month-format = "MMM yyyy"
+#let year-format = "yyyy"
 
-  let fmt-date(d) = month-names.at(lang).at(d.month() - 1) + " " + str(d.year())
-
-  let fmt-range(dates) = fmt-date(dates.from) + " – " + (
-    if dates.to == none { t(ui.present) } else { fmt-date(dates.to) }
+#let l8n = (
+  datetime: (
+    present: (
+      de: "aktuell",
+      en: "Present",
+    )
+  ),
+  headings: (
+    professional-experience: (
+      en: "Professional Experience",
+      de: "Berufserfahrung",
+    ),
+    education: (
+      en: "Education",
+      de: "Ausbildung",
+    ),
+    languages: (
+      en: "Languages",
+      de: "Sprachen",
+    ),
+    skills: (
+      en: "Skills",
+      de: "Kenntnisse & Fähigkeiten",
+    ),
+    hobbies: (
+      en: "Hobbies & Interests",
+      de: "Hobbies & Interessen",
+    ),
+  ),
+  languages: (
+    en: (
+      en: "English",
+      de: "Englisch",
+    ),
+    de: (
+      en: "German",
+      de: "Deutsch",
+    ),
+    pt: (
+      en: "Portuguese",
+      de: "Portugiesisch",
+    ),
+    es: (
+      en: "Spanish",
+      de: "Spanisch",
+    ),
+  ),
+  languageLevels: (
+    native: (
+      en: "native",
+      de: "muttersprachler",
+    ),
+    fluent: (
+      en: "fluent",
+      de: "verhandlungssicher",
+    ),
+    conversational: (
+      en: "conversational",
+      de: "gute Kenntnisse",
+    )
   )
+)
 
-  let job(role, org, place, dates, bullets) = [
-    #text(weight: "bold", t(role)) \
-    #emph(org)#if place != none [, #t(place)]
-    #v(0.1em)
-    #text(size: 8.5pt, fill: rgb("#666666"), upper(fmt-range(dates)))
-    #v(0.15em)
-    #for b in bullets [
-      - #t(b)
-    ]
-    #v(0.35em)
-  ]
-
-  let section(body) = [
-    #v(0.4em)
-    #text(size: 11pt, weight: "bold", fill: accent, tracking: 0.05em, upper(body))
-    #v(0.2em)
-    #line(length: 100%, stroke: 0.5pt + accent)
-    #v(0.3em)
-  ]
-
-  let title(body) = text(size: 26pt, weight: "bold", body)
-
-  (t: t, fmt-range: fmt-range, job: job, section: section, title: title)
+#let localized(value, lang: none) = context {
+  if type(value) == dictionary {
+    value.at(
+      if lang == none { text.lang } else { lang }
+    )
+  } else {
+    value
+  }
 }
 
-// Full-page layout: name/tagline/contact header, summary, then a
-// (main, sidebar) two-column body. `main` and `sidebar` are functions
-// taking the helper dict from `make` and returning content.
-#let resume(lang: "en", name: none, tagline: none, contact: none, summary: none, main: none, sidebar: none) = {
-  let h = make(lang)
-  let (t, title) = h
-
-  set page(paper: "a4", margin: (x: 1.8cm, y: 1.3cm))
-  set text(font: "Libertinus Serif", size: 9.1pt)
+#let cv(
+  name: [],
+  tagline: [],
+  contact: [],
+  profile: [],
+  education: (),
+  languages: (),
+  hobbies: (),
+  skills: (),
+  jobs: (),
+) = {
+  set page(paper: "a4", margin: (x:1.8cm, y: 1.3cm))
+  set text(font: fonts.serif, size: 9.1pt)
   set par(justify: true, leading: 0.48em)
 
-  grid(
-    columns: (1fr, auto),
-    column-gutter: 1em,
-    [
-      #title[#name]
-      #v(0.1em)
-      #text(size: 12pt, style: "italic")[#t(tagline)]
-    ],
-    [
-      #set text(size: 9pt)
-      #set align(right)
-      #contact
-    ]
+  show title : set text(size: 23pt)
+  show heading.where(level: 1) : set text(
+    font: fonts.sans,
+    fill: colors.accent,
+    size: 10pt,
+    tracking: -0.3pt,
   )
-
-  v(0.6em)
-  par(justify: true)[#t(summary)]
-  v(0.5em)
+  show heading.where(level: 1): it => [
+    #v(presection-space)
+    #it.body
+  ]
 
   grid(
     columns: (2fr, 1fr),
-    column-gutter: 1.5em,
-    main(h),
-    sidebar(h),
+    column-gutter: 3em,
+    [
+      #title(name)
+      #text(localized(tagline), font: fonts.sans, size: 11pt)
+
+      #v(presection-space)
+      #localized(profile)
+
+      = #localized(l8n.headings.professional-experience)
+
+      #for job in jobs [
+        #set par(spacing: 0.8em, leading: 0.1em)
+        == #localized(job.title) #h(1fr)#text(font: fonts.sans, size: 8pt, fill: colors.neutral, weight: "regular")[
+          #upper[
+            #display-date(job.from, pattern: month-format) ---
+            #if job.to == none { localized(l8n.datetime.present) } else { display-date(job.to, pattern: month-format) }
+          ]
+        ]
+
+        #if "company" in job and "place" in job [
+          #v(-0.5em)
+          #text(size: 10pt)[
+            #set par(justify: false)
+            #set text(fill: colors.neutral)
+            #box[#text(job.company, style: "italic"),] #box[#localized(job.place)]
+          ]
+
+          #set par(leading: 0.1em, spacing: 0.8em)
+          #for item in job.at("items", default: ()) [
+            #par(localized(item))
+          ]
+        ] else [
+          // For multiple sequential job titles at the same company,
+          // which are then displayed as a group
+          #v(-1.2em)
+        ]
+      ]
+
+    ],
+    [
+      #set align(right)
+      #par[
+        #set text(size: 8pt, font: fonts.sans)
+        #contact
+      ]
+
+      #set align(left)
+      #set par(justify: false, spacing: 1.2em)
+
+      = #localized(l8n.headings.education)
+
+      #for item in education [
+        #set text(fill: colors.neutral)
+        #text(weight: "bold", fill: colors.body)[#localized(item.title)]
+        #h(1fr)
+        #display-date(item.from, pattern: year-format)--#display-date(item.to, pattern: year-format)
+        \
+        #text(localized(item.institution), style: "italic")
+
+      ]
+
+      = #localized(l8n.headings.languages)
+
+      #for item in languages [
+        #text(localized(l8n.languages.at(item.language)), weight: "bold"),
+        #localized(l8n.languageLevels.at(item.level)) \
+      ]
+
+      = #localized(l8n.headings.skills)
+
+      #for section in skills [
+        #show heading.where(level: 2) : set text(size: 9pt, font: fonts.sans, fill: colors.neutral, weight: "regular")
+        #show heading.where(level: 2) : it => [ #v(0.3em)#it.body ]
+        == #localized(section.category) \
+        #for item in section.items [
+          #box(localized(item))#h(1em)
+        ]
+      ]
+
+      = #localized(l8n.headings.hobbies)
+
+      #for hobby in hobbies [
+        #set text(fill: colors.neutral)
+        #localized(hobby) \
+      ]
+    ]
   )
+
 }

@@ -1,6 +1,6 @@
 #import "template_new.typ": cv, webProfile
 
-#set text(lang: "en")
+#set text(lang: "de")
 
 #cv(
   name: [Guilherme Grochau Azzi],

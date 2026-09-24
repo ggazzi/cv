@@ -20,6 +20,37 @@
 #let month-format = "MMM yyyy"
 #let year-format = "yyyy"
 
+#let l8n = (
+  headings: (
+    professional-experience: (
+      en: "Professional Experience",
+      de: "Berufserfahrung",
+    ),
+    education: (
+      en: "Education",
+      de: "Ausbildung",
+    ),
+    languages: (
+      en: "Languages",
+      de: "Sprachen",
+    ),
+    skills: (
+      en: "Skills",
+      de: "Kenntnisse & Fähigkeiten",
+    ),
+    hobbies: (
+      en: "Hobbies & Interests",
+      de: "Hobbies & Interessen",
+    ),
+  ),
+)
+
+#let localized(content, lang: none) = {
+  context content.at(
+    if lang == none { text.lang } else { lang }
+  )
+}
+
 #let cv(
   name: [],
   tagline: [],
@@ -57,7 +88,7 @@
       #v(presection-space)
       #profile
 
-      = Professional Experience
+      = #localized(l8n.headings.professional-experience)
 
       #for job in jobs [
         #set par(spacing: 0.8em, leading: 0.1em)
@@ -98,7 +129,7 @@
       #set align(left)
       #set par(justify: false, spacing: 1.2em)
 
-      = Education
+      = #localized(l8n.headings.education)
 
       #for item in education [
         #set text(fill: colors.neutral)
@@ -110,13 +141,13 @@
 
       ]
 
-      = Languages
+      = #localized(l8n.headings.languages)
 
       #for item in languages [
         #text(item.language, weight: "bold"), #item.level \
       ]
 
-      = Skills
+      = #localized(l8n.headings.skills)
 
       #for section in skills [
         #show heading.where(level: 2) : set text(size: 9pt, font: fonts.sans, fill: colors.neutral, weight: "regular")
@@ -127,7 +158,7 @@
         ]
       ]
 
-      = Hobbies
+      = #localized(l8n.headings.hobbies)
 
       #for hobby in hobbies [
         #set text(fill: colors.neutral)

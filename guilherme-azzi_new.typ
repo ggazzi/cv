@@ -1,5 +1,7 @@
 #import "template_new.typ": cv, webProfile
 
+#set text(lang: "en")
+
 #cv(
   name: [Guilherme Grochau Azzi],
   tagline: [Software Engineer and Computer Scientist],

@@ -1,3 +1,5 @@
+#import "@preview/datify:1.3.0": display-date
+
 #let webProfile(domain, name, path: "") = [
   https:\/\/#text(domain, weight: "bold")/#path#text(name, style: "italic")
 ]
@@ -15,7 +17,8 @@
 
 #let presection-space = 2em
 
-#let month-format = "[month repr:short] [year]"
+#let month-format = "MMM yyyy"
+#let year-format = "yyyy"
 
 #let cv(
   name: [],
@@ -60,8 +63,8 @@
         #set par(spacing: 0.8em, leading: 0.1em)
         == #job.title#h(1fr)#text(font: fonts.sans, size: 8pt, fill: colors.neutral, weight: "regular")[
           #upper[
-            #job.from.display(month-format) ---
-            #if job.to == none { "Present" } else { job.to.display(month-format) }
+            #display-date(job.from, pattern: month-format) ---
+            #if job.to == none { "Present" } else { display-date(job.to, pattern: month-format) }
           ]
         ]
 
@@ -101,7 +104,7 @@
         #set text(fill: colors.neutral)
         #text(weight: "bold", fill: colors.body)[#item.title]
         #h(1fr)
-        #item.from.display("[year]")--#item.to.display("[year]")
+        #display-date(item.from, pattern: year-format)--#display-date(item.to, pattern: year-format)
         \
         #text(item.institution, style: "italic")
 

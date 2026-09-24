@@ -4,7 +4,10 @@
 
 #cv(
   name: [Guilherme Grochau Azzi],
-  tagline: [Software Engineer and Computer Scientist],
+  tagline: (
+    en: [Software Engineer and Computer Scientist],
+    de: [Softwareingenieur und Informatiker],
+  ),
   contact: [
     Talstr. 3, 13189 Berlin \
     #text(weight: "bold")[+49 176 66724098] \
@@ -13,13 +16,18 @@
     #webProfile("linkedin.com", "grochauazzi", path: "in/")
   ],
 
-  profile: [
-    Software engineer with over 7 years of experience in backend platforms, distributed cloud infrastructure and academic research.
-    Highly adaptable to new technologies and concepts.
-    Experienced in the deliberate use of AI to boost productivity without sacrificing quality.
-    A committed advocate for software architecture and testing.
-    Values working in teams whose members support and learn from each other.
-  ],
+  profile: (
+    en: [
+      Software engineer with over 7 years of experience in backend platforms, distributed cloud infrastructure and academic research.
+      Highly adaptable to new technologies and concepts.
+      Experienced in the deliberate use of AI to boost productivity without sacrificing quality.
+      A committed advocate for software architecture and testing.
+      Values working in teams whose members support and learn from each other.
+    ],
+    de: [
+      TODO
+    ],
+  ),
 
   education: (
     (
@@ -37,21 +45,21 @@
   ),
 
   languages: (
-    (language: "English", level: "fluent"),
-    (language: "German", level: "fluent"),
-    (language: "Portuguese", level: "native"),
-    (language: "Spanish", level: "conversational"),
+    (language: "en", level: "fluent"),
+    (language: "de", level: "fluent"),
+    (language: "pt", level: "native"),
+    (language: "es", level: "conversational"),
   ),
 
   hobbies: (
     "Musical Theatre",
     "Smart Home / Smart Lighting",
-    "Tabletop RPGs",
+    (en: "Tabletop RPGs", de: "Tabletop Rollenspiele"),
   ),
 
   skills: (
     (
-      category: "Programming Languages",
+      category: (en: "Programming Languages", de: "Programmiersprachen"),
       items: (
         "JavaScript/TypeScript",
         "Python",
@@ -64,7 +72,7 @@
       )
     ),
     (
-      category: "Cloud & Infrastructure",
+      category: (en: "Cloud & Infrastructure", de: "Cloud & Infrastruktur"),
       items: (
         "AWS Lambda",
         "AWS ECS",
@@ -77,7 +85,7 @@
       )
     ),
     (
-      category: "Databases",
+      category: (en: "Databases", de: "Datenbanken"),
       items: (
         "SQL",
         "AWS DynamoDB",
@@ -85,14 +93,14 @@
       ),
     ),
     (
-      category: "Engineering Practices",
+      category: (en: "Engineering Practices", de: "Engineering-Praktiken"),
       items: (
-        "Automated Testing",
+        (en: "Automated Testing", de: "Automatisiertes Testen"),
         "Continuous Integration",
-        "Technical Writing",
-        "Stakeholder Communication",
-        "Cross-Functional Leadership",
-        "Mentorship & Pairing",
+        (en: "Technical Writing", de: "Technische Dokumentation"),
+        (en: "Stakeholder Communication", de: "Stakeholder-Kommunikation"),
+        (en: "Cross-Functional Leadership", de: "Interdisziplinäre Führung"),
+        (en: "Mentorship & Pairing", de: "Mentoring und Pair Programming"),
       )
     )
   ),

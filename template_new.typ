@@ -21,6 +21,12 @@
 #let year-format = "yyyy"
 
 #let l8n = (
+  datetime: (
+    present: (
+      de: "aktuell",
+      en: "Present",
+    )
+  ),
   headings: (
     professional-experience: (
       en: "Professional Experience",
@@ -43,12 +49,48 @@
       de: "Hobbies & Interessen",
     ),
   ),
+  languages: (
+    en: (
+      en: "English",
+      de: "Englisch",
+    ),
+    de: (
+      en: "German",
+      de: "Deutsch",
+    ),
+    pt: (
+      en: "Portuguese",
+      de: "Portugiesisch",
+    ),
+    es: (
+      en: "Spanish",
+      de: "Spanisch",
+    ),
+  ),
+  languageLevels: (
+    native: (
+      en: "native",
+      de: "muttersprachler",
+    ),
+    fluent: (
+      en: "fluent",
+      de: "verhandlungssicher",
+    ),
+    conversational: (
+      en: "conversational",
+      de: "gute Kenntnisse",
+    )
+  )
 )
 
-#let localized(content, lang: none) = {
-  context content.at(
-    if lang == none { text.lang } else { lang }
-  )
+#let localized(value, lang: none) = context {
+  if type(value) == dictionary {
+    value.at(
+      if lang == none { text.lang } else { lang }
+    )
+  } else {
+    value
+  }
 }
 
 #let cv(
@@ -83,19 +125,19 @@
     column-gutter: 3em,
     [
       #title(name)
-      #text(tagline, font: fonts.sans, size: 11pt)
+      #text(localized(tagline), font: fonts.sans, size: 11pt)
 
       #v(presection-space)
-      #profile
+      #localized(profile)
 
       = #localized(l8n.headings.professional-experience)
 
       #for job in jobs [
         #set par(spacing: 0.8em, leading: 0.1em)
-        == #job.title#h(1fr)#text(font: fonts.sans, size: 8pt, fill: colors.neutral, weight: "regular")[
+        == #localized(job.title) #h(1fr)#text(font: fonts.sans, size: 8pt, fill: colors.neutral, weight: "regular")[
           #upper[
             #display-date(job.from, pattern: month-format) ---
-            #if job.to == none { "Present" } else { display-date(job.to, pattern: month-format) }
+            #if job.to == none { localized(l8n.datetime.present) } else { display-date(job.to, pattern: month-format) }
           ]
         ]
 
@@ -104,12 +146,12 @@
           #text(size: 10pt)[
             #set par(justify: false)
             #set text(fill: colors.neutral)
-            #box[#text(job.company, style: "italic"),] #box[#job.place]
+            #box[#text(job.company, style: "italic"),] #box[#localized(job.place)]
           ]
 
           #set par(leading: 0.1em, spacing: 0.8em)
           #for item in job.at("items", default: ()) [
-            #par(item)
+            #par(localized(item))
           ]
         ] else [
           // For multiple sequential job titles at the same company,
@@ -133,18 +175,19 @@
 
       #for item in education [
         #set text(fill: colors.neutral)
-        #text(weight: "bold", fill: colors.body)[#item.title]
+        #text(weight: "bold", fill: colors.body)[#localized(item.title)]
         #h(1fr)
         #display-date(item.from, pattern: year-format)--#display-date(item.to, pattern: year-format)
         \
-        #text(item.institution, style: "italic")
+        #text(localized(item.institution), style: "italic")
 
       ]
 
       = #localized(l8n.headings.languages)
 
       #for item in languages [
-        #text(item.language, weight: "bold"), #item.level \
+        #text(localized(l8n.languages.at(item.language)), weight: "bold"),
+        #localized(l8n.languageLevels.at(item.level)) \
       ]
 
       = #localized(l8n.headings.skills)
@@ -152,9 +195,9 @@
       #for section in skills [
         #show heading.where(level: 2) : set text(size: 9pt, font: fonts.sans, fill: colors.neutral, weight: "regular")
         #show heading.where(level: 2) : it => [ #v(0.3em)#it.body ]
-        == #section.category \
+        == #localized(section.category) \
         #for item in section.items [
-          #box(item)#h(1em)
+          #box(localized(item))#h(1em)
         ]
       ]
 
@@ -162,7 +205,7 @@
 
       #for hobby in hobbies [
         #set text(fill: colors.neutral)
-        #hobby \
+        #localized(hobby) \
       ]
     ]
   )

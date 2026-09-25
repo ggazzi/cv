@@ -246,8 +246,11 @@
       = #localized(l8n.headings.languages)
 
       #for item in languages [
-        #text(localized(l8n.languages.at(item.language)), weight: "bold"),
-        #localized(l8n.languageLevels.at(item.level)) \
+        #box[
+          #text(localized(l8n.languages.at(item.language)), weight: "bold"),
+          #localized(l8n.languageLevels.at(item.level))
+        ]
+        #h(1.5em)
       ]
 
       = #localized(l8n.headings.skills)

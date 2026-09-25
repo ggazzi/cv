@@ -165,6 +165,7 @@
       items: (
         [Delivered Babbel's first personalised lesson experience, leading a team of seven engineers and domain experts and moderating competing perspectives.],
         [Owned the technical and architectural decisions; shared accountability for the roadmap with the team's Product Manager.],
+        [Enabled three new ML-based features within a year by providing the content platform with a Databricks integration and a GraphQL API.],
         [Mentored a colleague through their progression from Professional to Senior Engineer.],
         [Improved reliability by introducing Service Level Objectives (SLOs).],
       ),

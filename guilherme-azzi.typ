@@ -154,8 +154,9 @@
       from: datetime(year: 2024, month: 05, day: 01),
       to: datetime(year: 2026, month: 06, day: 30),
       items: (
-        [Led a cross-functional team of seven engineers and domain experts, moderating competing perspectives and owning the technical and architectural decisions; jointly accountable for the roadmap with the team's Product Manager. The effort delivered Babbel's first personalised lesson experience.],
-        [Mentored a colleague through their progression from Professional to Senior Engineer.],
+        [Delivered Babbel's first personalised lesson experience, leading a team of seven engineers and domain experts.],
+        [Owned the architecture and technical calls, balancing competing views; shared roadmap ownership with the Product Manager.],
+        [Mentored a colleague from Professional to Senior Engineer.],
         [Improved reliability by introducing Service Level Objectives (SLOs).],
       ),
     ),

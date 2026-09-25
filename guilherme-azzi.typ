@@ -5,8 +5,8 @@
 #cv(
   name: [Guilherme Grochau Azzi],
   tagline: (
-    en: [Software Engineer and Computer Scientist],
-    de: [Softwareingenieur und Informatiker],
+    en: [Senior Software Engineer],
+    de: [Senior Software Engineer],
   ),
   contact: [
     Talstr. 3, 13189 Berlin \
@@ -18,11 +18,10 @@
 
   profile: (
     en: [
-      Software engineer with over 7 years of experience in backend platforms, distributed cloud infrastructure and academic research.
-      Highly adaptable to new technologies and concepts.
-      Experienced in the deliberate use of AI to boost productivity without sacrificing quality.
-      A committed advocate for software architecture and testing.
-      Values working in teams whose members support and learn from each other.
+      Senior software engineer with over a decade in software and more than seven years building production systems, most recently backend platforms and cloud infrastructure.
+      Drawn to problems where getting the model right is the hard part, from domain modelling to reasoning about system behaviour.
+      Sets technical direction for cross-functional teams and mentors engineers towards seniority.
+      A committed advocate for software architecture and automated testing, and for the disciplined use of AI to boost productivity without sacrificing quality.
     ],
     de: [
       TODO
@@ -33,6 +32,10 @@
     (
       title: "M.Sc. Computer Science",
       institution: "Universidade Federal do Rio Grande do Sul",
+      details: (
+        en: "Thesis on conflict detection in graph and model transformation",
+        de: "TODO",
+      ),
       from: datetime(year: 2016, month: 3, day: 1),
       to: datetime(year: 2018, month: 8, day: 31),
     ),
@@ -45,10 +48,10 @@
   ),
 
   languages: (
-    (language: "en", level: "fluent"),
-    (language: "de", level: "fluent"),
+    (language: "en", level: "c2"),
+    (language: "de", level: "c2"),
     (language: "pt", level: "native"),
-    (language: "es", level: "conversational"),
+    (language: "es", level: "b1"),
   ),
 
   hobbies: (
@@ -61,14 +64,21 @@
     (
       category: (en: "Programming Languages", de: "Programmiersprachen"),
       items: (
-        "JavaScript/TypeScript",
+        "TypeScript/JavaScript",
         "Python",
         "Go",
         "Ruby",
+      )
+    ),
+    (
+      category: (en: "Also Familiar With", de: "Grundkenntnisse"),
+      items: (
         "Java",
         "Scala",
         "Rust",
-        "Haskell"
+        "Haskell",
+        "Elm",
+        "Elixir"
       )
     ),
     (
@@ -76,7 +86,8 @@
       items: (
         "AWS Lambda",
         "AWS ECS",
-        "Cloudflare Functions",
+        "AWS Kinesis",
+        "Cloudflare Workers",
         "Cloudflare Durable Objects",
         "Terraform",
         "Docker",
@@ -85,31 +96,68 @@
       )
     ),
     (
-      category: (en: "Databases", de: "Datenbanken"),
+      category: (en: "Data & AI", de: "Daten & KI"),
       items: (
         "SQL",
         "AWS DynamoDB",
-        "AWS S3"
+        "AWS S3",
+        "Cloudflare D1",
+        "Cloudflare R2",
+        "Gemini API",
+        (en: "AI-Assisted Development", de: "KI-gestützte Entwicklung"),
       ),
     ),
     (
-      category: (en: "Engineering Practices", de: "Engineering-Praktiken"),
+      category: (en: "Web", de: "Web"),
       items: (
+        "React",
+        "Svelte",
+        "Hono",
+        "Contentful",
+      ),
+    ),
+    (
+      category: (en: "Architecture & Practices", de: "Architektur & Praktiken"),
+      items: (
+        (en: "System Design", de: "Systementwurf"),
+        "Domain-Driven Design",
         (en: "Automated Testing", de: "Automatisiertes Testen"),
         "Continuous Integration",
+        "Observability & SLOs",
         (en: "Technical Writing", de: "Technische Dokumentation"),
-        (en: "Stakeholder Communication", de: "Stakeholder-Kommunikation"),
-        (en: "Cross-Functional Leadership", de: "Interdisziplinäre Führung"),
-        (en: "Mentorship & Pairing", de: "Mentoring und Pair Programming"),
       )
-    )
+    ),
+    (
+      category: (en: "Leadership & Collaboration", de: "Führung & Zusammenarbeit"),
+      items: (
+        (en: "Cross-Functional Leadership", de: "Interdisziplinäre Führung"),
+        (en: "Stakeholder Communication", de: "Stakeholder-Kommunikation"),
+        (en: "Mentorship & Pairing", de: "Mentoring und Pair Programming"),
+        (en: "Teaching", de: "Lehre"),
+      )
+    ),
   ),
 
   jobs: (
     (
+      title: (en: "Career Break", de: "Berufliche Auszeit"),
+      from: datetime(year: 2026, month: 07, day: 01),
+      to: none,
+      items: (
+        [Personal projects and professional development.],
+      ),
+    ),
+    (
       title: "Senior Backend Software Engineer",
+      company: "Babbel GmbH",
+      place: "Berlin, Germany",
       from: datetime(year: 2024, month: 05, day: 01),
       to: datetime(year: 2026, month: 06, day: 30),
+      items: (
+        [Led a cross-functional team of seven engineers and domain experts, moderating competing perspectives and owning the technical and architectural decisions; jointly accountable for the roadmap with the team's Product Manager. The effort delivered Babbel's first personalised lesson experience.],
+        [Mentored a colleague through their progression from Professional to Senior Engineer.],
+        [Improved reliability by introducing Service Level Objectives (SLOs).],
+      ),
     ),
     (
       title: "Backend Software Engineer",
@@ -118,12 +166,10 @@
       from: datetime(year: 2022, month: 11, day: 15),
       to: datetime(year: 2024, month: 04, day: 30),
       items: (
-        [Maintained and extended the content platform (TypeScript, Go and Ruby codebases; deployed to AWS Lambda, DynamoDB, S3, Kinesis and ECS via Terraform).],
-        [Integrated the content platform with Databricks, enabling new AI-based features to leverage Babbel's learning content.],
-        [Improved reliability by introducing Service Level Objectives (SLOs).],
+        [Co-designed the integration of the in-house CMS with Contentful, on which five new learning experiences were built within a year.],
+        [Maintained and extended the content platform as part of the team responsible for it (TypeScript, Go and Ruby codebases; deployed to AWS Lambda, DynamoDB, S3, Kinesis and ECS via Terraform).],
+        [Maintained Babbel's internal CMS and built extensions to Contentful (React).],
         [Streamlined workflows by improving CI and monorepo tooling.],
-        [Led a tiger team that built the first personalized learning experience.],
-        [Mentored a colleague through their progression from Professional to Senior Engineer.],
       ),
     ),
     (
@@ -133,12 +179,12 @@
       from: datetime(year: 2018, month: 11, day: 15),
       to: datetime(year: 2022, month: 06, day: 30),
       items: (
-        [Organised four different courses with up to 750 students per semester.],
-        [Researched programming languages for deep learning.],
+        [Secured a research grant of over €200,000 for the SFAssist project, together with an industry partner specialising in embedded software.],
+        [Organised four courses and delivered part of the teaching, among them Software Engineering and Programming Paradigms with up to 750 students per semester.],
+        [Moved the teaching of a 750-student course to a fully remote format during the pandemic.],
+        [Supervised student teams of 10 to 15 building systems that spanned a backend, a web frontend and an embedded Arduino component, reviewing their architecture and code throughout the semester.],
         [Advised four Bachelor's theses.],
-        [Successfully obtained a research grant with an industry partner.],
-        [Led a tiger team that build the first personalized learning experience.],
-        [Used Python and SQLite to bridge disparate systems of the university.],
+        [Automated the manual administration of teaching assistants with Python and SQLite, bridging university systems that offered no integration.],
       )
     ),
     (
@@ -149,7 +195,8 @@
       to: datetime(year: 2018, month: 08, day: 31),
       items: (
         [Researched formal methods and model transformations.],
-        [Architected and contributed to an open-source graph transformation engine, introducing CI pipelines, unit testing and test coverage metrics.],
+        [Architected and contributed to Verigraph, an open-source graph transformation engine (see Projects below).],
+        [First author of #emph[On the essence and initiality of conflicts in M-adhesive transformation systems] (Journal of Logical and Algebraic Methods in Programming, 2019), cited 28 times.],
       )
     ),
     (
@@ -159,7 +206,7 @@
       from: datetime(year: 2015, month: 5, day: 01),
       to: datetime(year: 2016, month: 3, day: 01),
       items: (
-        [Developed a frontend with Javascript, RxJS and CycleJS],
+        [Developed a web frontend with JavaScript, RxJS and CycleJS.],
         [Integrated the web frontend into a legacy GUI with CEF.],
       )
     ),
@@ -181,8 +228,28 @@
       to: datetime(year: 2012, month: 7, day: 31),
       items: (
         [Developed intelligent agents for traffic simulation in Python.],
-        [Researched traffic planing and simulation.],
+        [Researched traffic planning and simulation.],
       )
     ),
-  )
+  ),
+
+  projects: (
+    (
+      title: "Textum",
+      from: datetime(year: 2026, month: 07, day: 01),
+      to: none,
+      items: (
+        [Full-stack application for shared TTRPG campaign notes: Svelte on Cloudflare Pages, Hono on Cloudflare Workers, Durable Objects with SQLite, D1 and R2.],
+        [Explores LLM-assisted structuring of freeform text via the Gemini API: entity detection, summaries and title suggestions.],
+      ),
+    ),
+    (
+      title: "Verigraph",
+      from: datetime(year: 2016, month: 3, day: 01),
+      to: datetime(year: 2018, month: 08, day: 31),
+      items: (
+        [Architected and contributed to an open-source graph transformation engine (Haskell), introducing CI pipelines, unit testing and test coverage metrics. #link("https://github.com/Verites/verigraph")],
+      ),
+    ),
+  ),
 )

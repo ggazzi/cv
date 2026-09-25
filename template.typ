@@ -1,7 +1,7 @@
 #import "@preview/datify:1.3.0": display-date
 
 #let webProfile(domain, name, path: "") = [
-  https:\/\/#text(domain, weight: "bold")/#path#text(name, style: "italic")
+  #link("https://" + domain + "/" + path + name)[https:\/\/#text(domain, weight: "bold")/#path#text(name, style: "italic")]
 ]
 
 #let fonts = (
@@ -31,6 +31,10 @@
     professional-experience: (
       en: "Professional Experience",
       de: "Berufserfahrung",
+    ),
+    projects: (
+      en: "Projects",
+      de: "Projekte",
     ),
     education: (
       en: "Education",
@@ -79,7 +83,11 @@
     conversational: (
       en: "conversational",
       de: "gute Kenntnisse",
-    )
+    ),
+    c2: "C2",
+    c1: "C1",
+    b2: "B2",
+    b1: "B1",
   )
 )
 
@@ -103,6 +111,7 @@
   hobbies: (),
   skills: (),
   jobs: (),
+  projects: (),
 ) = {
   set page(paper: "a4", margin: (x:1.8cm, y: 1.3cm))
   set text(font: fonts.serif, size: 9.1pt)
@@ -132,7 +141,7 @@
 
       = #localized(l8n.headings.professional-experience)
 
-      #for job in jobs [
+      #let entries(entries) = for job in entries [
         #set par(spacing: 0.8em, leading: 0.1em)
         == #localized(job.title) #h(1fr)#text(font: fonts.sans, size: 8pt, fill: colors.neutral, weight: "regular")[
           #upper[
@@ -148,16 +157,26 @@
             #set text(fill: colors.neutral)
             #box[#text(job.company, style: "italic"),] #box[#localized(job.place)]
           ]
+        ]
 
+        #if "items" in job [
           #set par(leading: 0.1em, spacing: 0.8em)
-          #for item in job.at("items", default: ()) [
+          #for item in job.items [
             #par(localized(item))
           ]
-        ] else [
+        ] else if not ("company" in job and "place" in job) [
           // For multiple sequential job titles at the same company,
           // which are then displayed as a group
           #v(-1.2em)
         ]
+      ]
+
+      #entries(jobs)
+
+      #if projects.len() > 0 [
+        = #localized(l8n.headings.projects)
+
+        #entries(projects)
       ]
 
     ],
@@ -180,6 +199,9 @@
         #display-date(item.from, pattern: year-format)--#display-date(item.to, pattern: year-format)
         \
         #text(localized(item.institution), style: "italic")
+        #if "details" in item [
+          \ #localized(item.details)
+        ]
 
       ]
 

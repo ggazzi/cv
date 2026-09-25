@@ -307,22 +307,27 @@
         )
         #show heading.where(level: 2) : it => [ #v(0.45em)#upper(it.body) ]
 
-        == #localized(section.category) \
-        #if "items" in section {
-          for item in section.items [
-            #box(localized(item))#h(1em)
-          ]
-        }
-
-        #if "subsections" in section {
-          for subsection in section.subsections [
-            #box(text(fill: colors.neutral, size: sizes.label, font: fonts.sans)[#localized(subsection.label)])#h(1em)
-            #for item in subsection.items [
+        // A category is one unit: its label stranded at the foot of the column,
+        // or two of its items orphaned on the next page, reads as a typesetting
+        // error rather than as a list that happens to continue.
+        #block(breakable: false, above: spacing-sidebar.item, below: 0pt)[
+          == #localized(section.category) \
+          #if "items" in section {
+            for item in section.items [
               #box(localized(item))#h(1em)
             ]
+          }
 
-          ]
-        }
+          #if "subsections" in section {
+            for subsection in section.subsections [
+              #box(text(fill: colors.neutral, size: sizes.label, font: fonts.sans)[#localized(subsection.label)])#h(1em)
+              #for item in subsection.items [
+                #box(localized(item))#h(1em)
+              ]
+
+            ]
+          }
+        ]
       ]
 
       = #localized(l8n.headings.hobbies)

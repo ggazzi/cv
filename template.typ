@@ -1,18 +1,36 @@
 #import "@preview/datify:1.3.0": display-date
 
 #let webProfile(domain, name, path: "") = [
-  #link("https://" + domain + "/" + path + name)[https:\/\/#text(domain, weight: "bold")/#path#text(name, style: "italic")]
+  #link("https://" + domain + "/" + path + name)[#text(domain, weight: "bold")/#path#text(name, style: "italic")]
 ]
 
+// Typography rules, one meaning per device:
+//   all-caps + positive tracking -> section heading (level 1 only)
+//   italic                       -> organisation name (company, institution, web handle)
+//   bold                         -> key scannable term of its line (job title, degree, language)
+//   bold, in the contact block   -> "reachable here" (phone, email; not the postal address)
+//   colors.neutral               -> metadata only (dates, category labels)
+//   colors.accent                -> structure and positioning (section headings, tagline)
+// Sizes: name / title / body / label, plus sublabel for the skills categories,
+// which are caps like the section headings and so must differ on size, weight
+// and tracking to stay subordinate to them.
 #let fonts = (
-  serif: "Iowan Old Style",
-  sans: "Avenir Next",
+  serif: "Spectral",
+  sans: "Schibsted Grotesk",
+)
+
+#let sizes = (
+  name: 23pt,
+  title: 11pt,
+  body: 9.5pt,
+  label: 8pt,
+  sublabel: 7.2pt,
 )
 
 #let colors = (
   body: black,
   neutral: rgb("#666666"),
-  accent: rgb("#1f6fb2")
+  accent: rgb("#2563a8")
 )
 
 #let presection-space = 2em
@@ -113,28 +131,36 @@
   jobs: (),
   projects: (),
 ) = {
-  set page(paper: "a4", margin: (x:1.8cm, y: 1.3cm))
-  set text(font: fonts.serif, size: 9.1pt)
-  set par(justify: true, leading: 0.48em)
+  set page(paper: "a4", margin: (x: 1.5cm, y: 1.3cm))
+  set text(font: fonts.serif, size: sizes.body, tracking: -0.1pt)
+  set par(justify: false, leading: 0.62em)
 
-  show title : set text(size: 23pt)
+  show title : set text(size: sizes.name, weight: "medium", tracking: -0.2pt)
   show heading.where(level: 1) : set text(
     font: fonts.sans,
     fill: colors.accent,
-    size: 10pt,
-    tracking: -0.3pt,
+    size: sizes.label,
+    weight: "semibold",
+    tracking: 0.8pt,
   )
   show heading.where(level: 1): it => [
     #v(presection-space)
-    #it.body
+    #upper(it.body)
   ]
 
   grid(
-    columns: (2fr, 1fr),
+    columns: (1.85fr, 1fr),
     column-gutter: 3em,
     [
       #title(name)
-      #text(localized(tagline), font: fonts.sans, size: 11pt)
+      #text(
+        upper(localized(tagline)),
+        font: fonts.sans,
+        size: 9pt,
+        fill: colors.accent,
+        weight: "semibold",
+        tracking: 0.8pt,
+      )
 
       #v(presection-space)
       #localized(profile)
@@ -142,25 +168,21 @@
       = #localized(l8n.headings.professional-experience)
 
       #let entries(entries) = for job in entries [
-        #set par(spacing: 0.8em, leading: 0.1em)
-        == #localized(job.title) #h(1fr)#text(font: fonts.sans, size: 8pt, fill: colors.neutral, weight: "regular")[
-          #upper[
-            #display-date(job.from, pattern: month-format) ---
-            #if job.to == none { localized(l8n.datetime.present) } else { display-date(job.to, pattern: month-format) }
-          ]
+        #set par(spacing: 0.8em)
+        == #localized(job.title) #h(1fr)#text(font: fonts.sans, size: sizes.label, fill: colors.neutral, weight: "regular")[
+          #display-date(job.from, pattern: month-format) --
+          #if job.to == none { localized(l8n.datetime.present) } else { display-date(job.to, pattern: month-format) }
         ]
 
         #if "company" in job and "place" in job [
-          #v(-0.5em)
-          #text(size: 10pt)[
-            #set par(justify: false)
-            #set text(fill: colors.neutral)
+          #v(-0.45em)
+          #text(size: sizes.body)[
             #box[#text(job.company, style: "italic"),] #box[#localized(job.place)]
           ]
         ]
 
         #if "items" in job [
-          #set par(leading: 0.1em, spacing: 0.8em)
+          #set par(spacing: 0.9em)
           #for item in job.items [
             #par(localized(item))
           ]
@@ -183,7 +205,7 @@
     [
       #set align(right)
       #par[
-        #set text(size: 8pt, font: fonts.sans)
+        #set text(size: sizes.label, font: fonts.sans)
         #contact
       ]
 
@@ -193,10 +215,11 @@
       = #localized(l8n.headings.education)
 
       #for item in education [
-        #set text(fill: colors.neutral)
-        #text(weight: "bold", fill: colors.body)[#localized(item.title)]
+        #text(weight: "bold")[#localized(item.title)]
         #h(1fr)
-        #display-date(item.from, pattern: year-format)--#display-date(item.to, pattern: year-format)
+        #text(font: fonts.sans, size: sizes.label, fill: colors.neutral)[
+          #display-date(item.from, pattern: year-format)--#display-date(item.to, pattern: year-format)
+        ]
         \
         #text(localized(item.institution), style: "italic")
         #if "details" in item [
@@ -215,8 +238,14 @@
       = #localized(l8n.headings.skills)
 
       #for section in skills [
-        #show heading.where(level: 2) : set text(size: 9pt, font: fonts.sans, fill: colors.neutral, weight: "regular")
-        #show heading.where(level: 2) : it => [ #v(0.3em)#it.body ]
+        #show heading.where(level: 2) : set text(
+          size: sizes.sublabel,
+          font: fonts.sans,
+          fill: colors.neutral,
+          weight: "regular",
+          tracking: 1.3pt,
+        )
+        #show heading.where(level: 2) : it => [ #v(0.45em)#upper(it.body) ]
         == #localized(section.category) \
         #for item in section.items [
           #box(localized(item))#h(1em)
@@ -226,7 +255,6 @@
       = #localized(l8n.headings.hobbies)
 
       #for hobby in hobbies [
-        #set text(fill: colors.neutral)
         #localized(hobby) \
       ]
     ]

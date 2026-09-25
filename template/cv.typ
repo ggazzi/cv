@@ -186,8 +186,9 @@
     tracking: 0.8pt,
   )
   show heading.where(level: 1): set block(above: 0pt, below: 0.5em)
-  show heading.where(level: 1): it => [
-    #v(spacing-main.section)
+  // Sticky: a heading stranded at the foot of a column, with its content on
+  // the next page, reads as a section with nothing in it.
+  show heading.where(level: 1): it => block(sticky: true, above: spacing-main.section)[
     #upper(it.body)
   ]
   show link : set text(font: fonts.sans, size: sizes.label)
@@ -221,7 +222,7 @@
       #let entries(entries) = for job in entries [
         #show heading.where(level: 2): set block(above: 0pt)
         #set par(spacing: 0.8em)
-        #block(breakable: false, above: spacing-main.job)[
+        #block(sticky: true, above: spacing-main.job)[
           == #localized(job.title) #h(1fr)#text(font: fonts.sans, size: sizes.label, fill: colors.neutral, weight: "regular")[
             #display-date(job.from, pattern: month-format) --
             #if job.to == none { localized(l8n.datetime.present) } else { display-date(job.to, pattern: month-format) }
@@ -233,18 +234,13 @@
               #box[#text(job.company, style: "italic"),] #box[#localized(job.place)]
             ]
           ]
-
-          #if "items" in job [
-            #set par(spacing: spacing-main.item)
-            #for item in job.items [
-              #par(localized(item))
-            ]
-          ]
         ]
-        #if not ("items" in job) and not ("company" in job and "place" in job) [
-          // For multiple sequential job titles at the same company,
-          // which are then displayed as a group
-          #v(-1.2em)
+
+        #if "items" in job [
+          #set par(spacing: spacing-main.item)
+          #for item in job.items [
+            #par(localized(item))
+          ]
         ]
       ]
 
@@ -268,9 +264,9 @@
       // The sidebar overrides the main column's rhythm with its own scale,
       // which is what makes it fit on the first page.
       #set par(justify: false, spacing: spacing-sidebar.item, leading: spacing-sidebar.line)
-      #show heading.where(level: 1): it => [
-        #v(spacing-sidebar.section)
+      #show heading.where(level: 1): it => block(sticky: true, above: spacing-sidebar.section)[
         #upper(it.body)
+        #v(spacing-sidebar.item)
       ]
 
       = #localized(l8n.headings.education)

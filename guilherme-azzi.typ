@@ -26,7 +26,7 @@
       Advocates software architecture and automated testing, and the disciplined use of AI to raise productivity without costing quality.
     ],
     de: [
-      Seit über 10 Jahren in der Softwareentwicklung, davon sieben Jahre in der Entwicklung von Systemen für den Produktiveinsatz, zuletzt Backend-Plattformen und Cloud-Infrastruktur.
+      Über 10 Jahre Erfahrung in der Softwareentwicklung, davon sieben im Produktivbetrieb, zuletzt Backend-Plattformen und Cloud-Infrastruktur.
       Besonderes Interesse an Problemen, bei denen das richtige Domänenmodell die eigentliche Herausforderung ist: von den Konzepten selbst bis zum Verhalten des Systems.
       Erfahrung in der technischen Führung crossfunktionaler Teams und im Mentoring von Engineers auf dem Weg zur Senior-Rolle.
       Überzeugt von Softwarearchitektur und automatisiertem Testen sowie vom disziplinierten Einsatz von KI, um ohne Qualitätseinbußen die Produktivität zu steigern.

@@ -81,16 +81,19 @@
   skills: (
     (
       category: (en: "Programming Languages", de: "Programmiersprachen"),
-      items: (
-        "TypeScript/JavaScript",
-        "Python",
-        "Ruby",
-        "Go",
-        "Rust",
-      ),
       subsections: (
         (
-          label: (en: "also familiar with", de: "Grundkenntnisse in"),
+          label: (en: "fluent in", de: "sehr gute Kenntnisse in"),
+          items: (
+            "TypeScript/JavaScript",
+            "Python",
+            "Ruby",
+            "Go",
+            "Rust",
+          ),
+        ),
+        (
+          label: (en: "also productive in", de: "fundierte Kenntnisse in"),
           items: (
             "Java",
             "Scala",

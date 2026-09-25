@@ -301,10 +301,13 @@
           tracking: 1.3pt,
         )
         #show heading.where(level: 2) : it => [ #v(0.45em)#upper(it.body) ]
+
         == #localized(section.category) \
-        #for item in section.items [
-          #box(localized(item))#h(1em)
-        ]
+        #if "items" in section {
+          for item in section.items [
+            #box(localized(item))#h(1em)
+          ]
+        }
 
         #if "subsections" in section {
           for subsection in section.subsections [
@@ -312,8 +315,9 @@
             #for item in subsection.items [
               #box(localized(item))#h(1em)
             ]
-            ]
-         }
+
+          ]
+        }
       ]
 
       = #localized(l8n.headings.hobbies)

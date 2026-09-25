@@ -190,27 +190,32 @@
 
       = #localized(l8n.headings.professional-experience)
 
+      // Each entry is an unbreakable block: a title, its dates and the first
+      // bullet split over a page boundary read as two unrelated fragments.
       #let entries(entries) = for job in entries [
-        #show heading.where(level: 2): set block(above: spacing-main.job)
+        #show heading.where(level: 2): set block(above: 0pt)
         #set par(spacing: 0.8em)
-        == #localized(job.title) #h(1fr)#text(font: fonts.sans, size: sizes.label, fill: colors.neutral, weight: "regular")[
-          #display-date(job.from, pattern: month-format) --
-          #if job.to == none { localized(l8n.datetime.present) } else { display-date(job.to, pattern: month-format) }
-        ]
+        #block(breakable: false, above: spacing-main.job)[
+          == #localized(job.title) #h(1fr)#text(font: fonts.sans, size: sizes.label, fill: colors.neutral, weight: "regular")[
+            #display-date(job.from, pattern: month-format) --
+            #if job.to == none { localized(l8n.datetime.present) } else { display-date(job.to, pattern: month-format) }
+          ]
 
-        #if "company" in job and "place" in job [
-          #v(-0.45em)
-          #text(size: sizes.body)[
-            #box[#text(job.company, style: "italic"),] #box[#localized(job.place)]
+          #if "company" in job and "place" in job [
+            #v(-0.45em)
+            #text(size: sizes.body)[
+              #box[#text(job.company, style: "italic"),] #box[#localized(job.place)]
+            ]
+          ]
+
+          #if "items" in job [
+            #set par(spacing: spacing-main.item)
+            #for item in job.items [
+              #par(localized(item))
+            ]
           ]
         ]
-
-        #if "items" in job [
-          #set par(spacing: spacing-main.item)
-          #for item in job.items [
-            #par(localized(item))
-          ]
-        ] else if not ("company" in job and "place" in job) [
+        #if not ("items" in job) and not ("company" in job and "place" in job) [
           // For multiple sequential job titles at the same company,
           // which are then displayed as a group
           #v(-1.2em)

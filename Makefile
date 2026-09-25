@@ -10,10 +10,22 @@ TYPST_FLAGS = --font-path fonts --ignore-system-fonts
 
 SOURCE = guilherme-azzi.typ
 
-build:
-	typst compile $(TYPST_FLAGS) $(SOURCE)
+# One source, two languages: the language is passed in and every localisable
+# string in the source is an (en:, de:) dictionary.
+LANG_CODE ?= en
+OUT_en = guilherme-azzi.pdf
+OUT_de = guilherme-azzi.de.pdf
 
+build: $(OUT_en) $(OUT_de)
+
+$(OUT_en): $(SOURCE) template.typ
+	typst compile $(TYPST_FLAGS) --input lang=en $(SOURCE) $@
+
+$(OUT_de): $(SOURCE) template.typ
+	typst compile $(TYPST_FLAGS) --input lang=de $(SOURCE) $@
+
+# make watch LANG_CODE=de
 watch:
-	typst watch $(TYPST_FLAGS) $(SOURCE)
+	typst watch $(TYPST_FLAGS) --input lang=$(LANG_CODE) $(SOURCE) $(OUT_$(LANG_CODE))
 
 .PHONY: build watch

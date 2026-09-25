@@ -58,9 +58,15 @@
 #let l8n = (
   datetime: (
     present: (
-      de: "aktuell",
+      de: "heute",
       en: "Present",
-    )
+    ),
+    // Stamped from the build date: a CV that keeps floating around in some
+    // recruiting database should say how fresh it is.
+    updated: (
+      de: "Stand",
+      en: "Updated",
+    ),
   ),
   headings: (
     professional-experience: (
@@ -73,7 +79,8 @@
     ),
     education: (
       en: "Education",
-      de: "Ausbildung",
+      // Not "Ausbildung", which in German connotes vocational training.
+      de: "Studium",
     ),
     languages: (
       en: "Languages",
@@ -85,7 +92,7 @@
     ),
     hobbies: (
       en: "Hobbies & Interests",
-      de: "Hobbies & Interessen",
+      de: "Hobbys & Interessen",
     ),
   ),
   languages: (
@@ -109,7 +116,7 @@
   languageLevels: (
     native: (
       en: "native",
-      de: "muttersprachler",
+      de: "Muttersprache",
     ),
     fluent: (
       en: "fluent",
@@ -152,7 +159,16 @@
   jobs: (),
   projects: (),
 ) = {
-  set page(paper: "a4", margin: (x: 1.5cm, y: 1.3cm))
+  set page(
+    paper: "a4",
+    margin: (x: 1.5cm, y: 1.3cm),
+    footer: context align(right, text(
+      font: fonts.sans,
+      size: sizes.sublabel,
+      fill: colors.neutral,
+    )[#localized(l8n.datetime.updated) #datetime.today().display("[month]/[year]")]),
+    footer-descent: 0.5em,
+  )
   set text(font: fonts.serif, size: sizes.body, tracking: -0.1pt)
   set par(justify: false, leading: spacing-main.line)
 

@@ -152,6 +152,11 @@
     columns: (1.85fr, 1fr),
     column-gutter: 3em,
     [
+      // Justified in the main column only: the flush right edge makes the
+      // block structure of each entry legible. The sidebar stays ragged --
+      // its measure is far too narrow to justify without rivers.
+      #set par(justify: true)
+
       #title(name)
       #text(
         upper(localized(tagline)),

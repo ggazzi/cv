@@ -340,6 +340,10 @@
     ),
   ),
 
+  colophon: (
+    en: [Typeset with #link("https://typst.app")[Typst] · source: #link("https://github.com/ggazzi/cv")[github.com/ggazzi/cv]],
+    de: [Gesetzt mit #link("https://typst.app")[Typst] · Quelltext: #link("https://github.com/ggazzi/cv")[github.com/ggazzi/cv]],
+  ),
   projects: (
     (
       title: "Textum",

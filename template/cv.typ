@@ -154,15 +154,24 @@
   skills: (),
   jobs: (),
   projects: (),
+  // Optional line in the footer, opposite the update stamp: where this
+  // document came from, for a reader who cares how it was made.
+  colophon: none,
 ) = {
   set page(
     paper: "a4",
     margin: (x: 1.5cm, y: 1.3cm),
-    footer: context align(right, text(
+    footer: context text(
       font: fonts.sans,
       size: sizes.sublabel,
       fill: colors.neutral,
-    )[#localized(l8n.datetime.updated) #datetime.today().display("[month]/[year]")]),
+    )[
+      // The global link rule sizes links for the body; the footer is smaller.
+      #show link: set text(size: sizes.sublabel)
+      #if colophon != none { localized(colophon) }
+      #h(1fr)
+      #localized(l8n.datetime.updated) #datetime.today().display("[month]/[year]")
+    ],
     footer-descent: 0.5em,
   )
   set text(font: fonts.serif, size: sizes.body, tracking: -0.1pt)

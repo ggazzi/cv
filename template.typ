@@ -33,7 +33,15 @@
   accent: rgb("#2563a8")
 )
 
-#let presection-space = 2em
+// Vertical rhythm. Each level is at least 1.6x the one below it, so a gap
+// always reads as a boundary rather than as a slightly larger line gap.
+// line 5.3pt < item 10pt < job 17pt < section 28pt.
+#let spacing = (
+  line: 5.3pt,
+  item: 10pt,
+  job: 17pt,
+  section: 28pt,
+)
 
 #let month-format = "MMM yyyy"
 #let year-format = "yyyy"
@@ -133,7 +141,7 @@
 ) = {
   set page(paper: "a4", margin: (x: 1.5cm, y: 1.3cm))
   set text(font: fonts.serif, size: sizes.body, tracking: -0.1pt)
-  set par(justify: false, leading: 0.62em)
+  set par(justify: false, leading: spacing.line)
 
   show title : set text(size: sizes.name, weight: "medium", tracking: -0.2pt)
   show heading.where(level: 1) : set text(
@@ -143,8 +151,9 @@
     weight: "semibold",
     tracking: 0.8pt,
   )
+  show heading.where(level: 1): set block(above: 0pt, below: 0.5em)
   show heading.where(level: 1): it => [
-    #v(presection-space)
+    #v(spacing.section)
     #upper(it.body)
   ]
 
@@ -167,12 +176,13 @@
         tracking: 0.8pt,
       )
 
-      #v(presection-space)
+      #v(spacing.section)
       #localized(profile)
 
       = #localized(l8n.headings.professional-experience)
 
       #let entries(entries) = for job in entries [
+        #show heading.where(level: 2): set block(above: spacing.job)
         #set par(spacing: 0.8em)
         == #localized(job.title) #h(1fr)#text(font: fonts.sans, size: sizes.label, fill: colors.neutral, weight: "regular")[
           #display-date(job.from, pattern: month-format) --
@@ -187,7 +197,7 @@
         ]
 
         #if "items" in job [
-          #set par(spacing: 0.9em)
+          #set par(spacing: spacing.item)
           #for item in job.items [
             #par(localized(item))
           ]

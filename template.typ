@@ -35,12 +35,21 @@
 
 // Vertical rhythm. Each level is at least 1.6x the one below it, so a gap
 // always reads as a boundary rather than as a slightly larger line gap.
-// line 5.3pt < item 10pt < job 17pt < section 28pt.
-#let spacing = (
+// The two columns run the same scale at two measures: the sidebar is a third
+// as wide, so its lines need less leading and its shorter blocks sit closer
+// together. Each column's steps are set from its own dictionary, and the ratio
+// between consecutive levels holds within each.
+#let spacing-main = (
   line: 5.3pt,
-  item: 10pt,
-  job: 17pt,
-  section: 28pt,
+  item: 10pt,    // 1.9x line
+  job: 17pt,     // 1.7x item
+  section: 28pt, // 1.6x job
+)
+
+#let spacing-sidebar = (
+  line: 4.3pt,
+  item: 11pt,    // 2.6x line
+  section: 19pt, // 1.7x item
 )
 
 #let month-format = "MMM yyyy"
@@ -141,7 +150,7 @@
 ) = {
   set page(paper: "a4", margin: (x: 1.5cm, y: 1.3cm))
   set text(font: fonts.serif, size: sizes.body, tracking: -0.1pt)
-  set par(justify: false, leading: spacing.line)
+  set par(justify: false, leading: spacing-main.line)
 
   show title : set text(size: sizes.name, weight: "medium", tracking: -0.2pt)
   show heading.where(level: 1) : set text(
@@ -153,7 +162,7 @@
   )
   show heading.where(level: 1): set block(above: 0pt, below: 0.5em)
   show heading.where(level: 1): it => [
-    #v(spacing.section)
+    #v(spacing-main.section)
     #upper(it.body)
   ]
 
@@ -176,13 +185,13 @@
         tracking: 0.8pt,
       )
 
-      #v(spacing.section)
+      #v(spacing-main.section)
       #localized(profile)
 
       = #localized(l8n.headings.professional-experience)
 
       #let entries(entries) = for job in entries [
-        #show heading.where(level: 2): set block(above: spacing.job)
+        #show heading.where(level: 2): set block(above: spacing-main.job)
         #set par(spacing: 0.8em)
         == #localized(job.title) #h(1fr)#text(font: fonts.sans, size: sizes.label, fill: colors.neutral, weight: "regular")[
           #display-date(job.from, pattern: month-format) --
@@ -197,7 +206,7 @@
         ]
 
         #if "items" in job [
-          #set par(spacing: spacing.item)
+          #set par(spacing: spacing-main.item)
           #for item in job.items [
             #par(localized(item))
           ]
@@ -225,7 +234,13 @@
       ]
 
       #set align(left)
-      #set par(justify: false, spacing: 1.2em)
+      // The sidebar overrides the main column's rhythm with its own scale,
+      // which is what makes it fit on the first page.
+      #set par(justify: false, spacing: spacing-sidebar.item, leading: spacing-sidebar.line)
+      #show heading.where(level: 1): it => [
+        #v(spacing-sidebar.section)
+        #upper(it.body)
+      ]
 
       = #localized(l8n.headings.education)
 

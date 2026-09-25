@@ -167,8 +167,8 @@
   ]
 
   grid(
-    columns: (1.85fr, 1fr),
-    column-gutter: 3em,
+    columns: (1.95fr, 1fr),
+    column-gutter: 2em,
     [
       // Justified in the main column only: the flush right edge makes the
       // block structure of each entry legible. The sidebar stays ragged --

@@ -85,16 +85,17 @@
         (
           label: (en: "fluent in", de: "sehr gute Kenntnisse in"),
           items: (
-            "TypeScript/JavaScript",
+            "TypeScript",
+            "JavaScript",
             "Python",
             "Ruby",
-            "Go",
             "Rust",
           ),
         ),
         (
           label: (en: "also productive in", de: "fundierte Kenntnisse in"),
           items: (
+            "Go",
             "Java",
             "Scala",
             "Haskell",

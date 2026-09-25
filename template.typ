@@ -203,7 +203,7 @@
           ]
 
           #if "company" in job and "place" in job [
-            #v(-0.45em)
+            #v(-0.25em)
             #text(size: sizes.body)[
               #box[#text(job.company, style: "italic"),] #box[#localized(job.place)]
             ]

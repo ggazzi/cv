@@ -18,10 +18,10 @@
 
   profile: (
     en: [
-      Senior software engineer with over a decade in software and more than seven years building production systems, most recently backend platforms and cloud infrastructure.
-      Drawn to problems where getting the model right is the hard part, from domain modelling to reasoning about system behaviour.
+      Working in software for over 10 years, seven of them building production systems, most recently backend platforms and cloud infrastructure.
+      Drawn to problems where getting the domain model right is the hard part, from the concepts themselves to how the system behaves over time.
       Sets technical direction for cross-functional teams and mentors engineers towards seniority.
-      A committed advocate for software architecture and automated testing, and for the disciplined use of AI to boost productivity without sacrificing quality.
+      Advocates software architecture and automated testing, and the disciplined use of AI to raise productivity without costing quality.
     ],
     de: [
       TODO
@@ -46,7 +46,7 @@
         #box[Universidade Federal do Rio Grande do Sul]
       ],
       details: (
-        en: "Double degree program",
+        en: "Double degree programme",
         de: "TODO",
       ),
       from: datetime(year: 2010, month: 3, day: 1),
@@ -161,7 +161,8 @@
       from: datetime(year: 2024, month: 05, day: 01),
       to: datetime(year: 2026, month: 06, day: 30),
       items: (
-        [Led a cross-functional team of seven engineers and domain experts, moderating competing perspectives and owning the technical and architectural decisions; jointly accountable for the roadmap with the team's Product Manager. The effort delivered Babbel's first personalised lesson experience.],
+        [Delivered Babbel's first personalised lesson experience, leading a team of seven engineers and domain experts and moderating competing perspectives.],
+        [Owned the technical and architectural decisions; shared accountability for the roadmap with the team's Product Manager.],
         [Mentored a colleague through their progression from Professional to Senior Engineer.],
         [Improved reliability by introducing Service Level Objectives (SLOs).],
       ),
@@ -175,7 +176,7 @@
       items: (
         [Co-designed the integration of the in-house CMS with Contentful, on which five new learning experiences were built within a year.],
         [Maintained and extended the content platform as part of the team responsible for it (TypeScript, Go and Ruby codebases; deployed to AWS Lambda, DynamoDB, S3, Kinesis and ECS via Terraform).],
-        [Maintained Babbel's internal CMS and built extensions to Contentful (React).],
+        [Built extensions to Contentful and maintained Babbel's internal CMS (React).],
         [Streamlined workflows by improving CI and monorepo tooling.],
       ),
     ),
@@ -187,11 +188,11 @@
       to: datetime(year: 2022, month: 06, day: 30),
       items: (
         [Secured a research grant of over €200,000 for the SFAssist project, together with an industry partner specialising in embedded software.],
-        [Organised four courses and delivered part of the teaching, among them Software Engineering and Programming Paradigms with up to 750 students per semester.],
+        [Organised four courses and taught in them, among them Software Engineering and Programming Paradigms.],
         [Moved the teaching of a 750-student course to a fully remote format during the pandemic.],
-        [Supervised student teams of 10 to 15 building systems that spanned a backend, a web frontend and an embedded Arduino component, reviewing their architecture and code throughout the semester.],
+        [Supervised student teams of 10 to 15 building systems with a backend, a web frontend and an embedded Arduino component, guiding them in technical and organisational matters.],
         [Advised four Bachelor's theses.],
-        [Automated the manual administration of teaching assistants with Python and SQLite, bridging university systems that offered no integration.],
+        [Automated manual teaching-administration tasks with Python and SQLite, bridging university systems that offered no integration.],
       )
     ),
     (
@@ -202,8 +203,8 @@
       to: datetime(year: 2018, month: 08, day: 31),
       items: (
         [Researched formal methods and model transformations.],
-        [Architected and contributed to Verigraph, an open-source graph transformation engine (see Projects below).],
-        [First author of #emph[On the essence and initiality of conflicts in M-adhesive transformation systems] (Journal of Logical and Algebraic Methods in Programming, 2019), cited 28 times.],
+        [Architected Verigraph.],
+        [Published as first author #emph[On the essence and initiality of conflicts in M-adhesive transformation systems] (Journal of Logical and Algebraic Methods in Programming, 2019), cited 28 times.],
       )
     ),
     (
@@ -246,9 +247,9 @@
       from: datetime(year: 2026, month: 07, day: 01),
       to: none,
       items: (
+        [#link("https://ttrpg-companion.gui-azzi.de/")],
         [Full-stack application for shared TTRPG campaign notes: Svelte on Cloudflare Pages, Hono on Cloudflare Workers, Durable Objects with SQLite, D1 and R2.],
         [Explores LLM-assisted structuring of freeform text via the Gemini API: entity detection, summaries and title suggestions.],
-        [#link("https://ttrpg-companion.gui-azzi.de/")],
       ),
     ),
     (
@@ -256,8 +257,8 @@
       from: datetime(year: 2016, month: 3, day: 01),
       to: datetime(year: 2018, month: 08, day: 31),
       items: (
-        [Architected and contributed to an open-source graph transformation engine (Haskell), introducing CI pipelines, unit testing and test coverage metrics.],
         [#link("https://github.com/Verites/verigraph")],
+        [Architected and contributed to an open-source graph transformation engine (Haskell), introducing CI pipelines, unit testing and test coverage metrics.],
       ),
     ),
   ),

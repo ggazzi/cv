@@ -107,16 +107,24 @@
       )
     ),
     (
-      category: (en: "Cloud & Infrastructure", de: "Cloud & Infrastruktur"),
+      category: (
+        en: "Cloud, Infrastructure & Tooling",
+        de: "Cloud, Infrastruktur & Tooling",
+      ),
       items: (
         "AWS Lambda",
         "AWS ECS",
         "AWS Kinesis",
         "Cloudflare Workers",
         "Cloudflare Durable Objects",
+        "Serverless",
         "Terraform",
+        (en: "Infrastructure as Code", de: "Infrastructure as Code (IaC)"),
         "Docker",
         "Nix",
+        "Linux",
+        "Bash",
+        "Git",
         "GitHub Actions",
       )
     ),
@@ -124,10 +132,13 @@
       category: (en: "Data & AI", de: "Daten & KI"),
       items: (
         "SQL",
+        "MySQL",
+        "AWS RDS",
         "AWS DynamoDB",
         "AWS S3",
         "Cloudflare D1",
         "Cloudflare R2",
+        "SQLite",
         "Gemini API",
         "Claude Code",
         (en: "AI-Assisted Development", de: "KI-gestützte Entwicklung"),
@@ -138,30 +149,50 @@
       items: (
         "React",
         "Svelte",
+        "Node.js",
         "Hono",
         "Playwright",
         "REST",
         "GraphQL",
+        "OpenAPI",
         "Contentful",
       ),
     ),
     (
-      category: (en: "Architecture & Practices", de: "Architektur & Praktiken"),
+      category: (en: "Architecture & Design", de: "Architektur & Design"),
       items: (
         // "System Design" is the term used in German tech; "Systementwurf"
         // reads academic. Same reasoning for the anglicisms below.
         "System Design",
         "Domain-Driven Design",
+        (en: "Distributed Systems", de: "Verteilte Systeme"),
+        "Event-Driven Architecture",
+        "Microservices",
+        "Design Patterns",
+        (en: "API Design", de: "API-Design"),
+      )
+    ),
+    (
+      category: (en: "Engineering Practices", de: "Entwicklungspraktiken"),
+      items: (
         (en: "Automated Testing", de: "Automatisiertes Testen"),
-        "Continuous Integration",
-        "Observability & SLOs",
+        "Test-Driven Development (TDD)",
+        "Refactoring",
+        "CI/CD",
+        (
+          en: "Monitoring & Observability (SLOs)",
+          de: "Monitoring & Observability (SLOs)",
+        ),
+        (en: "On-Call & Incident Response", de: "On-Call & Incident Response"),
         (en: "Technical Writing", de: "Technische Dokumentation"),
       )
     ),
     (
       category: (en: "Leadership & Collaboration", de: "Führung & Zusammenarbeit"),
       items: (
+        (en: "Technical Leadership", de: "Technische Führung"),
         (en: "Cross-Functional Leadership", de: "Crossfunktionale Führung"),
+        (en: "Agile / Scrum", de: "Agile Methoden & Scrum"),
         (en: "Stakeholder Communication", de: "Stakeholder-Kommunikation"),
         (en: "Mentorship & Pairing", de: "Mentoring und Pair Programming"),
         (en: "Teaching", de: "Lehre"),

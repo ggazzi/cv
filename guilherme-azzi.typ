@@ -73,19 +73,17 @@
       items: (
         "TypeScript/JavaScript",
         "Python",
-        "Go",
         "Ruby",
-      )
-    ),
-    (
-      category: (en: "Also Familiar With", de: "Grundkenntnisse"),
-      items: (
+        "Go",
+        "Rust",
+      ),
+      also: (
         "Java",
         "Scala",
-        "Rust",
         "Haskell",
         "Elm",
-        "Elixir"
+        "Elixir",
+        "C++"
       )
     ),
     (
@@ -111,6 +109,7 @@
         "Cloudflare D1",
         "Cloudflare R2",
         "Gemini API",
+        "Claude Code",
         (en: "AI-Assisted Development", de: "KI-gestützte Entwicklung"),
       ),
     ),
@@ -120,6 +119,9 @@
         "React",
         "Svelte",
         "Hono",
+        "Playwright",
+        "REST",
+        "GraphQL",
         "Contentful",
       ),
     ),

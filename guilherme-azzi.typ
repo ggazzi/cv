@@ -1,4 +1,4 @@
-#import "template.typ": cv, webProfile
+#import "template/cv.typ": cv, webProfile
 
 // Language is chosen at build time: `typst compile --input lang=de`.
 // Every localisable value in this file is a (en:, de:) dictionary.

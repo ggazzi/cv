@@ -292,7 +292,7 @@
       )
     ),
     (
-      title: "Software Developer",
+      title: (en: "Software Developer", de: "Softwareentwickler"),
       company: "Inetsoft Informática",
       place: (en: "Porto Alegre, Brazil", de: "Porto Alegre, Brasilien"),
       from: datetime(year: 2015, month: 5, day: 01),
@@ -309,7 +309,7 @@
       )
     ),
     (
-      title: (en: "Research Assistant", de: "Wissenschaftlicher Mitarbeiter"),
+      title: (en: "Research Assistant", de: "Studentische Hilfskraft"),
       company: "Technische Universität Berlin",
       place: (en: "Berlin, Germany", de: "Berlin, Deutschland"),
       from: datetime(year: 2014, month: 9, day: 01),
@@ -322,7 +322,7 @@
       )
     ),
     (
-      title: (en: "Research Assistant", de: "Wissenschaftlicher Mitarbeiter"),
+      title: (en: "Research Assistant", de: "Studentische Hilfskraft"),
       company: "Universidade Federal do Rio Grande do Sul",
       place: (en: "Porto Alegre, Brazil", de: "Porto Alegre, Brasilien"),
       from: datetime(year: 2010, month: 8, day: 01),

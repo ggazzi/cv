@@ -41,7 +41,14 @@
     ),
     (
       title: "B.Sc. Computer Science",
-      institution: "Technische Universität Berlin and Universidade Federal do Rio Grande do Sul (double degree program)",
+      institution: [
+        #box[Technische Universität Berlin] &
+        #box[Universidade Federal do Rio Grande do Sul]
+      ],
+      details: (
+        en: "Double degree program",
+        de: "TODO",
+      ),
       from: datetime(year: 2010, month: 3, day: 1),
       to: datetime(year: 2015, month: 6, day: 30),
     ),
@@ -154,9 +161,8 @@
       from: datetime(year: 2024, month: 05, day: 01),
       to: datetime(year: 2026, month: 06, day: 30),
       items: (
-        [Delivered Babbel's first personalised lesson experience, leading a team of seven engineers and domain experts.],
-        [Owned the architecture and technical calls, balancing competing views; shared roadmap ownership with the Product Manager.],
-        [Mentored a colleague from Professional to Senior Engineer.],
+        [Led a cross-functional team of seven engineers and domain experts, moderating competing perspectives and owning the technical and architectural decisions; jointly accountable for the roadmap with the team's Product Manager. The effort delivered Babbel's first personalised lesson experience.],
+        [Mentored a colleague through their progression from Professional to Senior Engineer.],
         [Improved reliability by introducing Service Level Objectives (SLOs).],
       ),
     ),
@@ -242,6 +248,7 @@
       items: (
         [Full-stack application for shared TTRPG campaign notes: Svelte on Cloudflare Pages, Hono on Cloudflare Workers, Durable Objects with SQLite, D1 and R2.],
         [Explores LLM-assisted structuring of freeform text via the Gemini API: entity detection, summaries and title suggestions.],
+        [#link("https://ttrpg-companion.gui-azzi.de/")],
       ),
     ),
     (
@@ -249,7 +256,8 @@
       from: datetime(year: 2016, month: 3, day: 01),
       to: datetime(year: 2018, month: 08, day: 31),
       items: (
-        [Architected and contributed to an open-source graph transformation engine (Haskell), introducing CI pipelines, unit testing and test coverage metrics. #link("https://github.com/Verites/verigraph")],
+        [Architected and contributed to an open-source graph transformation engine (Haskell), introducing CI pipelines, unit testing and test coverage metrics.],
+        [#link("https://github.com/Verites/verigraph")],
       ),
     ),
   ),

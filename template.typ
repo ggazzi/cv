@@ -165,6 +165,7 @@
     #v(spacing-main.section)
     #upper(it.body)
   ]
+  show link : set text(font: fonts.sans, size: sizes.label)
 
   grid(
     columns: (1.95fr, 1fr),

@@ -88,13 +88,18 @@
         "Go",
         "Rust",
       ),
-      also: (
-        "Java",
-        "Scala",
-        "Haskell",
-        "Elm",
-        "Elixir",
-        "C++"
+      subsections: (
+        (
+          label: (en: "also familiar with", de: "Grundkenntnisse in"),
+          items: (
+            "Java",
+            "Scala",
+            "Haskell",
+            "Elm",
+            "Elixir",
+            "C++",
+          )
+        ),
       )
     ),
     (

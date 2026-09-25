@@ -131,10 +131,6 @@
     b2: "B2",
     b1: "B1",
   ),
-  alsoFamiliar: (
-    en: "also familiar with",
-    de: "Grundkenntnisse in",
-  ),
 )
 
 #let localized(value, lang: none) = context {
@@ -310,12 +306,14 @@
           #box(localized(item))#h(1em)
         ]
 
-        #if "also" in section [
-          #box(text(fill: colors.neutral, size: sizes.label, font: fonts.sans)[#localized(l8n.alsoFamiliar)])#h(1em)
-          #for item in section.also [
-            #box(localized(item))#h(1em)
-          ]
-        ]
+        #if "subsections" in section {
+          for subsection in section.subsections [
+            #box(text(fill: colors.neutral, size: sizes.label, font: fonts.sans)[#localized(subsection.label)])#h(1em)
+            #for item in subsection.items [
+              #box(localized(item))#h(1em)
+            ]
+            ]
+         }
       ]
 
       = #localized(l8n.headings.hobbies)
